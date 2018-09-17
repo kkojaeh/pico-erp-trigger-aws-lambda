@@ -2,5 +2,6 @@
 .thumbs.db
 .idea
 .gradle
-dist/
+build/
 npm-debug.log*
+node_modules/
