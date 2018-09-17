@@ -44,8 +44,7 @@ task build(type: Zip) {
   from "${projectDir}/"
   exclude "node_modules/.bin/**/*"
   include "node_modules/**/*"
-  include "src/**/*"
-  include "index.js"
+  include "*.js"
   destinationDir = file("${buildDir}")
   archiveName = "pico-erp-trigger.zip"
 }
