@@ -24,7 +24,7 @@ function authorize() {
   })
 }
 
-exports.execute = async (relativeUrl, method, body) => {
+module.exports.execute = async (relativeUrl, method, body) => {
   const token = await authorize()
   const options = {
     method: method,
