@@ -1,8 +1,8 @@
 const fetch = require('node-fetch')
-const apiBaseUrl = process.env.API_BASE_URL
 const firebase = require('firebase/app')
 require('firebase/auth')
 
+const apiBaseUrl = process.env.API_BASE_URL
 const firebaseApiKey = process.env.FIREBASE_API_KEY
 const firebaseUserEmail = process.env.FIREBASE_USER_EMAIL
 const firebaseUserPassword = process.env.FIREBASE_USER_PASSWORD

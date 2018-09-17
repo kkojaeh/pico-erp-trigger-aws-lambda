@@ -1,4 +1,4 @@
-const api = require('./plugins/api')
+const api = require('./api')
 const moment = require('moment')
 module.exports.execute = async () => {
   // 3개월 전
