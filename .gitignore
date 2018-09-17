@@ -1,0 +1,6 @@
+.DS_Store
+.thumbs.db
+.idea
+.gradle
+dist/
+npm-debug.log*

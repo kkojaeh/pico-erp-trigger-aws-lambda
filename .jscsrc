@@ -1,0 +1,15 @@
+{
+  "preset": "google",
+  "maximumLineLength": 120,
+  "disallowTrailingComma": true,
+  "fileExtensions": [
+    ".js"
+  ],
+  "excludeFiles": [
+  ],
+  "jsDoc": {
+    "enforceExistence": false
+  },
+  "disallowSpacesInAnonymousFunctionExpression": false,
+  "disallowSpacesInFunctionExpression": false
+}

@@ -1,0 +1,55 @@
+language: java
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+
+install:
+- sudo pip install --upgrade pip
+- sudo pip install awscli
+
+before_script:
+- aws configure set aws_access_key_id $S3_ACCESS_KEY_ID
+- aws configure set aws_secret_access_key $S3_SECRET_ACCESS_KEY
+
+script:
+- gradle build
+
+deploy:
+# 개발 서버 deploy
+- provider: s3
+  access_key_id: $AWS_LAMBDA_ACCESS_KEY_ID
+  secret_access_key:
+    secure: $AWS_LAMBDA_SECRET_ACCESS_KEY
+  region: $AWS_LAMBDA_REGION
+  bucket: $AWS_LAMBDA_BUCKET_DEV
+  upload-dir: dev/pico-erp-trigger
+  local_dir: build
+  skip_cleanup: true
+  on:
+    branch: master
+# 운영 서버 deploy
+- provider: s3
+  access_key_id: $AWS_LAMBDA_ACCESS_KEY_ID
+  secret_access_key:
+    secure: $AWS_LAMBDA_SECRET_ACCESS_KEY
+  region: $AWS_LAMBDA_REGION
+  bucket: $AWS_LAMBDA_BUCKET_PRD
+  upload-dir: prd/pico-erp-trigger
+  local_dir: build
+  skip_cleanup: true
+  on:
+    tags: true
+
+after_script:
+- if [ "$TRAVIS_BRANCH" = "$TRAVIS_TAG" ];
+  then
+  aws lambda update-function-code --function-name "pico-erp-clear-attachments-prd" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_PRD --s3-key prd/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
+  fi
+- if [ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ];
+  then
+  aws lambda update-function-code --function-name "pico-erp-clear-attachments-dev" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_DEV --s3-key dev/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
+  fi
+
+

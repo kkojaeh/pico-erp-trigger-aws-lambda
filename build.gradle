@@ -1,0 +1,51 @@
+buildscript {
+  apply from: 'https://rawgit.com/kkojaeh/pico-erp-gradle/master/buildscript.gradle'
+}
+
+ext {
+  linkHomepage = 'https://kkojaeh.github.io/pico-erp-server/#/'
+  linkCi = 'https://travis-ci.org/kkojaeh/pico-erp-trigger-aws-lambda'
+  linkIssue = 'https://github.com/kkojaeh/pico-erp-trigger-aws-lambda/issues'
+  linkScmUrl = 'https://github.com/kkojaeh/pico-erp-trigger-aws-lambda'
+  linkScmConnection = 'scm:git:git://github.com/kkojaeh/pico-erp-trigger-aws-lambda.git'
+  linkScmDevConnection = 'scm:git:ssh://git@github.com/kkojaeh/pico-erp-trigger-aws-lambda.git'
+}
+
+apply plugin: 'net.researchgate.release'
+
+release {
+  failOnCommitNeeded = false
+  failOnPublishNeeded = true
+  failOnSnapshotDependencies = true
+  failOnUnversionedFiles = true
+  failOnUpdateNeeded = true
+  revertOnFail = true
+  preCommitText = ''
+  preTagCommitMessage = '[Gradle Release Plugin] - pre tag commit: '
+  tagCommitMessage = '[Gradle Release Plugin] - creating tag: '
+  newVersionCommitMessage = '[Gradle Release Plugin] - new version commit: '
+  tagTemplate = '${version}'
+  versionPropertyFile = 'gradle.properties'
+  versionProperties = []
+  buildTasks = ['build']
+  release {
+    scmAdapters = [net.researchgate.release.GitAdapter]
+  }
+
+  git {
+    requireBranch = 'master'
+    pushToRemote = 'origin'
+    pushToBranchPrefix = ''
+    commitVersionFileOnly = false
+  }
+}
+
+task build(type: Zip) {
+  from "${projectDir}/"
+  exclude "node_modules/.bin/**/*"
+  include "node_modules/**/*"
+  include "src/**/*"
+  include "index.js"
+  destinationDir = file("${buildDir}")
+  archiveName = "pico-erp-trigger.zip"
+}
