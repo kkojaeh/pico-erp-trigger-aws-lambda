@@ -1,2 +1,2 @@
-const clearAttahcments = require('./clear-attahcments')
-exports.clearAttahcments = clearAttahcments.execute
+const clearAttachments = require('./clear-attachments')
+exports.clearAttachments = clearAttachments.execute

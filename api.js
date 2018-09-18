@@ -35,6 +35,6 @@ module.exports.execute = async (relativeUrl, method, body) => {
     },
     body: JSON.stringify(body)
   }
-  await fetch(`${apiBaseUrl}/${relativeUrl}`, options)
+  return await fetch(`${apiBaseUrl}/${relativeUrl}`, options)
 }
 
