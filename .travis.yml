@@ -49,12 +49,14 @@ after_script:
   aws lambda update-function-code --function-name "pico-erp-clear-attachments-prd" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_PRD --s3-key prd/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   aws lambda update-function-code --function-name "pico-erp-expire-item-lots-prd" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_PRD --s3-key prd/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   aws lambda update-function-code --function-name "pico-erp-expire-quotations-prd" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_PRD --s3-key prd/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
+  aws lambda update-function-code --function-name "pico-erp-generate-work-day-prd" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_PRD --s3-key prd/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   fi
 - if [ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ];
   then
   aws lambda update-function-code --function-name "pico-erp-clear-attachments-dev" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_DEV --s3-key dev/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   aws lambda update-function-code --function-name "pico-erp-expire-item-lots-dev" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_DEV --s3-key dev/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   aws lambda update-function-code --function-name "pico-erp-expire-quotations-dev" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_DEV --s3-key dev/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
+  aws lambda update-function-code --function-name "pico-erp-generate-work-day-dev" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_DEV --s3-key dev/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   fi
 
 
