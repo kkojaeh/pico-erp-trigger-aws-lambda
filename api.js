@@ -6,12 +6,15 @@ const apiBaseUrl = process.env.API_BASE_URL
 const firebaseApiKey = process.env.FIREBASE_API_KEY
 const firebaseUserEmail = process.env.FIREBASE_USER_EMAIL
 const firebaseUserPassword = process.env.FIREBASE_USER_PASSWORD
+let firebaseApp
 
 function authorize() {
   return new Promise((resolve, reject) => {
-    firebase.initializeApp({
-      apiKey: firebaseApiKey
-    })
+    if (!firebaseApp) {
+      firebaseApp = firebase.initializeApp({
+        apiKey: firebaseApiKey
+      })
+    }
     const auth = firebase.auth()
     auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
     auth.signInWithEmailAndPassword(firebaseUserEmail, firebaseUserPassword)
