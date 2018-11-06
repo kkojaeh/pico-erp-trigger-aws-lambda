@@ -4,11 +4,13 @@
 
 # 구현함수
 
-| name                   | description                                             |
-|------------------------|---------------------------------------------------------|
-| clear-attachments      | 삭제 후 일정시간(3개월) 이 지난 파일을 물리적으로 삭제     |
-| expire-item-lots       | 만료시간이 지난 품목 LOT를 만료함                         |
-| expire-quotations      | 만료시간이 지난 견적 을 만료함                            |
+| name                                             | description                                             |
+|--------------------------------------------------|---------------------------------------------------------|
+| attachment-clear                                 | 삭제 후 일정시간(3개월) 이 지난 파일을 물리적으로 삭제     |
+| item-lot-expire                                  | 만료시간이 지난 품목 LOT를 만료함                         |
+| quotation-expire                                 | 만료시간이 지난 견적 을 만료함                            |
+| work-schedule-generate                           | 근무시간 자동 생성                                       |
+| warehouse-transaction-request-cancel-uncommitted | 근무시간 자동 생성                                       |
 
 # 환경변수
 
