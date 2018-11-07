@@ -46,14 +46,14 @@ deploy:
 after_script:
 - if [ "$TRAVIS_BRANCH" = "$TRAVIS_TAG" ];
   then
-  for f in "attachment-clear" "item-lot-expire" "quotation-expire" "warehouse-transaction-request-cancel-uncommitted" "work-schedule-generate"
+  for f in "attachment-clear" "item-lot-expire" "quotation-expire" "warehouse-transaction-request-cancel-uncommitted" "work-schedule-generate";
   do
   aws lambda update-function-code --function-name "pico-erp-prd-$f" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_PRD --s3-key prd/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   done
   fi
 - if [ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ];
   then
-  for f in "attachment-clear" "item-lot-expire" "quotation-expire" "warehouse-transaction-request-cancel-uncommitted" "work-schedule-generate"
+  for f in "attachment-clear" "item-lot-expire" "quotation-expire" "warehouse-transaction-request-cancel-uncommitted" "work-schedule-generate";
   do
   aws lambda update-function-code --function-name "pico-erp-dev-$f" --region $AWS_LAMBDA_REGION --s3-bucket $AWS_LAMBDA_BUCKET_DEV --s3-key dev/pico-erp-trigger/pico-erp-trigger.zip >> /dev/null;
   done
